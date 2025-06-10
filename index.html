@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradient Card Component - 10 Variations</title>
+    <style>
+        :root {
+            /* Original gradient */
+            --grad-original: linear-gradient(225deg, transparent 55%, rgba(70, 111, 213, 0.07) 70%, rgba(234, 78, 200, 0.07) 100%);
+            
+            /* Variations */
+            --grad-sunset: linear-gradient(135deg, transparent 40%, rgba(255, 94, 87, 0.1) 60%, rgba(255, 157, 77, 0.1) 100%);
+            --grad-ocean: linear-gradient(180deg, transparent 50%, rgba(0, 119, 190, 0.08) 75%, rgba(0, 180, 216, 0.08) 100%);
+            --grad-neon: linear-gradient(45deg, transparent 30%, rgba(57, 255, 20, 0.05) 50%, rgba(255, 20, 147, 0.05) 100%);
+            --grad-aurora: linear-gradient(270deg, transparent 45%, rgba(120, 119, 198, 0.12) 65%, rgba(255, 119, 198, 0.12) 85%, rgba(119, 221, 119, 0.12) 100%);
+            --grad-subtle: linear-gradient(225deg, transparent 70%, rgba(255, 255, 255, 0.02) 85%, rgba(255, 255, 255, 0.04) 100%);
+            --grad-fire: linear-gradient(315deg, transparent 35%, rgba(255, 154, 0, 0.08) 55%, rgba(255, 69, 0, 0.08) 100%);
+            --grad-mint: linear-gradient(120deg, transparent 60%, rgba(85, 239, 196, 0.06) 80%, rgba(129, 236, 236, 0.06) 100%);
+            --grad-lavender: linear-gradient(200deg, transparent 50%, rgba(162, 155, 254, 0.09) 70%, rgba(223, 186, 244, 0.09) 100%);
+            --grad-intense: linear-gradient(225deg, transparent 40%, rgba(70, 111, 213, 0.2) 60%, rgba(234, 78, 200, 0.2) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .title {
+            font-size: 42px;
+            font-weight: 300;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 18px;
+        }
+
+        /* Base Card Component */
+        .card {
+            background: #1a1a1d;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: var(--gradient);
+            z-index: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .card:hover::before {
+            opacity: 1.5;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .card-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .card-code {
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 11px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 8px 12px;
+            border-radius: 6px;
+            color: rgba(255, 255, 255, 0.6);
+            word-break: break-all;
+            margin-top: auto;
+        }
+
+        /* Grid Layout */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        /* Snippet Section */
+        .snippet-section {
+            background: #1a1a1d;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .snippet-title {
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+
+        .code-block {
+            background: #0d0d0f;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 24px;
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+
+        .code-block pre {
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #e6e6e6;
+        }
+
+        .comment {
+            color: #6a737d;
+        }
+
+        .selector {
+            color: #7aa6da;
+        }
+
+        .property {
+            color: #9cdcfe;
+        }
+
+        .value {
+            color: #ce9178;
+        }
+
+        /* Special card styles */
+        .card-1 { --gradient: var(--grad-original); }
+        .card-2 { --gradient: var(--grad-sunset); }
+        .card-3 { --gradient: var(--grad-ocean); }
+        .card-4 { --gradient: var(--grad-neon); }
+        .card-5 { --gradient: var(--grad-aurora); }
+        .card-6 { --gradient: var(--grad-subtle); }
+        .card-7 { --gradient: var(--grad-fire); }
+        .card-8 { --gradient: var(--grad-mint); }
+        .card-9 { --gradient: var(--grad-lavender); }
+        .card-10 { --gradient: var(--grad-intense); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .title {
+                font-size: 32px;
+            }
+            
+            .card {
+                height: auto;
+                min-height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Gradient Card Component</h1>
+            <p class="subtitle">10 Beautiful Variations of Subtle Gradient Overlays</p>
+        </div>
+
+        <!-- Snippet Section -->
+        <div class="snippet-section">
+            <h2 class="snippet-title">📋 Basic Card Component Snippet</h2>
+            <div class="code-block">
+                <pre><span class="comment">/* CSS */</span>
+<span class="selector">.gradient-card</span> {
+    <span class="property">background</span>: <span class="value">#1a1a1d</span>;
+    <span class="property">border-radius</span>: <span class="value">16px</span>;
+    <span class="property">border</span>: <span class="value">1px solid rgba(255, 255, 255, 0.1)</span>;
+    <span class="property">padding</span>: <span class="value">32px</span>;
+    <span class="property">position</span>: <span class="value">relative</span>;
+    <span class="property">overflow</span>: <span class="value">hidden</span>;
+    <span class="property">transition</span>: <span class="value">all 0.3s ease</span>;
+}
+
+<span class="selector">.gradient-card::before</span> {
+    <span class="property">content</span>: <span class="value">''</span>;
+    <span class="property">position</span>: <span class="value">absolute</span>;
+    <span class="property">inset</span>: <span class="value">0</span>;
+    <span class="property">background</span>: <span class="value">linear-gradient(225deg, 
+        transparent 55%, 
+        rgba(70, 111, 213, 0.07) 70%, 
+        rgba(234, 78, 200, 0.07) 100%)</span>;
+    <span class="property">z-index</span>: <span class="value">1</span>;
+}
+
+<span class="selector">.gradient-card-content</span> {
+    <span class="property">position</span>: <span class="value">relative</span>;
+    <span class="property">z-index</span>: <span class="value">2</span>;
+}
+
+<span class="comment">/* HTML */</span>
+&lt;<span class="selector">div</span> <span class="property">class</span>=<span class="value">"gradient-card"</span>&gt;
+    &lt;<span class="selector">div</span> <span class="property">class</span>=<span class="value">"gradient-card-content"</span>&gt;
+        &lt;<span class="selector">h3</span>&gt;Your Title&lt;/<span class="selector">h3</span>&gt;
+        &lt;<span class="selector">p</span>&gt;Your content goes here&lt;/<span class="selector">p</span>&gt;
+    &lt;/<span class="selector">div</span>&gt;
+&lt;/<span class="selector">div</span>&gt;</pre>
+            </div>
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="cards-grid">
+            <div class="card card-1">
+                <div class="card-content">
+                    <h3 class="card-title">1. Original TopQs</h3>
+                    <p class="card-description">The classic gradient from your reference. Subtle blue to purple transition with 7% opacity creates a sophisticated accent.</p>
+                    <div class="card-code">225deg, transparent 55%, rgba(70, 111, 213, 0.07) 70%, rgba(234, 78, 200, 0.07) 100%</div>
+                </div>
+            </div>
+
+            <div class="card card-2">
+                <div class="card-content">
+                    <h3 class="card-title">2. Sunset Glow</h3>
+                    <p class="card-description">Warm orange to coral gradient reminiscent of a sunset. Perfect for creative or energetic content.</p>
+                    <div class="card-code">135deg, transparent 40%, rgba(255, 94, 87, 0.1) 60%, rgba(255, 157, 77, 0.1) 100%</div>
+                </div>
+            </div>
+
+            <div class="card card-3">
+                <div class="card-content">
+                    <h3 class="card-title">3. Ocean Depth</h3>
+                    <p class="card-description">Cool blue tones flowing from top to bottom. Ideal for professional or tech-focused designs.</p>
+                    <div class="card-code">180deg, transparent 50%, rgba(0, 119, 190, 0.08) 75%, rgba(0, 180, 216, 0.08) 100%</div>
+                </div>
+            </div>
+
+            <div class="card card-4">
+                <div class="card-content">
+                    <h3 class="card-title">4. Neon Lights</h3>
+                    <p class="card-description">Electric green to hot pink creates a cyberpunk vibe. Lower opacity keeps it subtle yet striking.</p>
+                    <div class="card-code">45deg, transparent 30%, rgba(57, 255, 20, 0.05) 50%, rgba(255, 20, 147, 0.05) 100%</div>
+                </div>
+            </div>
+
+            <div class="card card-5">
+                <div class="card-content">
+                    <h3 class="card-title">5. Aurora Borealis</h3>
+                    <p class="card-description">Multi-color gradient mimicking northern lights. Three color stops create a magical effect.</p>
+                    <div class="card-code">270deg, transparent 45%, rgba(120, 119, 198, 0.12) 65%, rgba(255, 119, 198, 0.12) 85%, rgba(119, 221, 119, 0.12) 100%</div>
+                </div>
+            </div>
+
+            <div class="card card-6">
+                <div class="card-content">
+                    <h3 class="card-title">6. Ghost Light</h3>
+                    <p class="card-description">Ultra-subtle white gradient for minimal designs. Almost invisible but adds depth to dark backgrounds.</p>
+                    <div class="card-code">225deg, transparent 70%, rgba(255, 255, 255, 0.02) 85%, rgba(255, 255, 255, 0.04) 100%</div>
+                </div>
+            </div>
+
+            <div class="card card-7">
+                <div class="card-content">
+                    <h3 class="card-title">7. Ember Glow</h3>
+                    <p class="card-description">Fire-inspired gradient with orange to red transition. Evokes warmth and passion.</p>
+                    <div class="card-code">315deg, transparent 35%, rgba(255, 154, 0, 0.08) 55%, rgba(255, 69, 0, 0.08) 100%</div>
+                </div>
+            </div>
+
+            <div class="card card-8">
+                <div class="card-content">
+                    <h3 class="card-title">8. Mint Fresh</h3>
+                    <p class="card-description">Refreshing mint to cyan gradient. Perfect for health, wellness, or eco-friendly themes.</p>
+                    <div class="card-code">120deg, transparent 60%, rgba(85, 239, 196, 0.06) 80%, rgba(129, 236, 236, 0.06) 100%</div>
+                </div>
+            </div>
+
+            <div class="card card-9">
+                <div class="card-content">
+                    <h3 class="card-title">9. Lavender Dream</h3>
+                    <p class="card-description">Soft purple tones create a calming, dreamy atmosphere. Great for creative or spiritual content.</p>
+                    <div class="card-code">200deg, transparent 50%, rgba(162, 155, 254, 0.09) 70%, rgba(223, 186, 244, 0.09) 100%</div>
+                </div>
+            </div>
+
+            <div class="card card-10">
+                <div class="card-content">
+                    <h3 class="card-title">10. Intense Original</h3>
+                    <p class="card-description">Same as the original but with 20% opacity for more dramatic effect. Use when you want the gradient to be more prominent.</p>
+                    <div class="card-code">225deg, transparent 40%, rgba(70, 111, 213, 0.2) 60%, rgba(234, 78, 200, 0.2) 100%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Usage Tips -->
+        <div class="snippet-section">
+            <h2 class="snippet-title">💡 Usage Tips</h2>
+            <div style="color: rgba(255, 255, 255, 0.8);">
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 16px;">
+                        <strong style="color: #667eea;">→ Opacity Control:</strong> Keep opacity between 0.05-0.15 for subtle effects. Higher values can overwhelm the content.
+                    </li>
+                    <li style="margin-bottom: 16px;">
+                        <strong style="color: #667eea;">→ Angle Selection:</strong> 45°, 135°, 225°, 315° create diagonal flows. 0°, 90°, 180°, 270° for straight edges.
+                    </li>
+                    <li style="margin-bottom: 16px;">
+                        <strong style="color: #667eea;">→ Transparent Area:</strong> More transparent area (50-70%) keeps the card cleaner. Less (30-40%) creates bolder effects.
+                    </li>
+                    <li style="margin-bottom: 16px;">
+                        <strong style="color: #667eea;">→ Color Harmony:</strong> Choose colors that complement your brand. Cool tones for professional, warm for creative.
+                    </li>
+                    <li style="margin-bottom: 16px;">
+                        <strong style="color: #667eea;">→ Performance:</strong> CSS gradients are GPU-accelerated and perform better than image overlays.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
