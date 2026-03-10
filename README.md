@@ -68,7 +68,6 @@ variants.map((variant) => (
 ## Requirements
 
 - React 19+
-- Tailwind CSS (must be configured in the consuming project)
 
 ## License
 
