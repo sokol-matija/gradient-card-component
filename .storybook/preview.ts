@@ -1,9 +1,9 @@
-import type { Preview } from '@storybook/react-vite';
-import { withPerformance } from 'storybook-addon-performance';
+import addonPerformancePanel from '@github-ui/storybook-addon-performance-panel';
+import { definePreview } from '@storybook/react-vite';
 import '../src/index.css';
 
-const preview: Preview = {
-  decorators: [withPerformance],
+export default definePreview({
+  addons: [addonPerformancePanel()],
   parameters: {
     controls: {
       matchers: {
@@ -15,6 +15,4 @@ const preview: Preview = {
       test: 'todo',
     },
   },
-};
-
-export default preview;
+});

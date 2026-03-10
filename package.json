@@ -1,25 +1,36 @@
 {
-  "name": "gradient-card-component",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@msokol/gradient-card-component",
+  "version": "0.1.0",
   "type": "module",
+  "files": ["dist"],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles": "./dist/index.css"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:lib": "vite build --config vite.lib.config.ts",
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.1",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
     "tailwindcss": "^4.2.1"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.0.1",
     "@eslint/js": "^9.39.1",
+    "@github-ui/storybook-addon-performance-panel": "^1.1.4",
     "@storybook/addon-a11y": "^10.2.17",
     "@storybook/addon-docs": "^10.2.17",
     "@storybook/addon-onboarding": "^10.2.17",
@@ -37,11 +48,13 @@
     "eslint-plugin-storybook": "^10.2.17",
     "globals": "^16.5.0",
     "playwright": "^1.58.2",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "storybook": "^10.2.17",
-    "storybook-addon-performance": "^0.17.3",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.48.0",
     "vite": "^7.3.1",
+    "vite-plugin-dts": "^4.5.4",
     "vitest": "^4.0.18"
   }
 }

@@ -1,4 +1,5 @@
 import type { CSSProperties, ReactNode } from 'react';
+import './GradientCard.css';
 import { GRADIENTS, type GradientVariant } from './gradients';
 
 interface GradientCardProps {

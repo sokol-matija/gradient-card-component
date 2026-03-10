@@ -11,7 +11,7 @@ const config: StorybookConfig = {
     "@storybook/addon-a11y",
     "@storybook/addon-docs",
     "@storybook/addon-onboarding",
-    "storybook-addon-performance"
+    "@github-ui/storybook-addon-performance-panel"
   ],
   "framework": "@storybook/react-vite"
 };

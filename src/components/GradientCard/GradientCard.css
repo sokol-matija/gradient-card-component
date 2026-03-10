@@ -1,0 +1,12 @@
+.gradient-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--gradient);
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+.gradient-card:hover::before {
+  opacity: 1.5;
+}
