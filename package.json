@@ -1,6 +1,6 @@
 {
   "name": "@msokol/gradient-card-component",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "files": ["dist"],
   "exports": {
@@ -8,7 +8,10 @@
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./styles": "./dist/index.css"
+    "./styles": {
+      "import": "./dist/index.css",
+      "types": "./dist/index.css.d.ts"
+    }
   },
   "scripts": {
     "dev": "vite",
